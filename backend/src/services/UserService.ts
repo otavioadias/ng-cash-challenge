@@ -21,14 +21,14 @@ export default class UserService implements IUserService {
         return token;
     }
 
-    static async findUser(user: IUserLogin): Promise<IUser> {
-        const [userExist] = await Users.findAll({ where: { username: user.username } });
+    static async findUser(username: string): Promise<IUser> {
+        const [userExist] = await Users.findAll({ where: { username } });
         return userExist;
     }
 
     public async newUser(user: IUserLogin): Promise<object> {
         const passwordHashed = UserService.hashPassword(user.password);
-        const verifyUser = await UserService.findUser(user);
+        const verifyUser = await UserService.findUser(user.username);
         if (!verifyUser) {
             const accountId = await Accounts.create({
                 balance: 100
@@ -57,7 +57,7 @@ export default class UserService implements IUserService {
         if (!user.username || !user.password) {
             throw new MissingParamError('All fields must be filled');
           }
-        const verifyUser = await UserService.findUser(user);
+        const verifyUser = await UserService.findUser(user.username);
         if (!verifyUser) {
             throw new InvalidParamError('Incorrect email or password');
         }

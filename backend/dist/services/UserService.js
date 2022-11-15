@@ -31,16 +31,16 @@ class UserService {
             return token;
         });
     }
-    static findUser(user) {
+    static findUser(username) {
         return __awaiter(this, void 0, void 0, function* () {
-            const [userExist] = yield Users_1.default.findAll({ where: { username: user.username } });
+            const [userExist] = yield Users_1.default.findAll({ where: { username } });
             return userExist;
         });
     }
     newUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
             const passwordHashed = UserService.hashPassword(user.password);
-            const verifyUser = yield UserService.findUser(user);
+            const verifyUser = yield UserService.findUser(user.username);
             if (!verifyUser) {
                 const accountId = yield Accounts_1.default.create({
                     balance: 100
@@ -70,7 +70,7 @@ class UserService {
             if (!user.username || !user.password) {
                 throw new missing_param_error_1.default('All fields must be filled');
             }
-            const verifyUser = yield UserService.findUser(user);
+            const verifyUser = yield UserService.findUser(user.username);
             if (!verifyUser) {
                 throw new invalid_param_error_1.default('Incorrect email or password');
             }

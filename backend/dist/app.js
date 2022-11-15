@@ -9,12 +9,14 @@ const express_1 = __importDefault(require("express"));
 const userRouter_1 = __importDefault(require("./routes/userRouter"));
 const errorMiddleware_1 = __importDefault(require("./middlewares/errorMiddleware"));
 const loginMiddleware_1 = __importDefault(require("./middlewares/loginMiddleware"));
+const accountRouter_1 = __importDefault(require("./routes/accountRouter"));
 class App {
     constructor() {
         this.app = (0, express_1.default)();
         this.config();
         // Não remover essa rota
         this.app.get('/', (_req, res) => res.json({ ok: true }));
+        this.app.use(accountRouter_1.default);
         this.app.use(loginMiddleware_1.default, userRouter_1.default);
         this.app.use(errorMiddleware_1.default);
     }
