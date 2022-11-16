@@ -3,9 +3,8 @@ import db from ".";
 
 class Transactions extends Model {
   id!: number;
-  username!: string;
-  password!: string;
-  accountId!: number;
+  value!: number;
+  createdAt!: Date;
 }
 
 Transactions.init(
@@ -15,14 +14,6 @@ Transactions.init(
       primaryKey: true,
       allowNull: false,
       autoIncrement: true,
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     debitedAccountId: {
       type: DataTypes.INTEGER,
@@ -52,13 +43,13 @@ Transactions.init(
     },
     createdAt: {
       type: DataTypes.DATE,
-      allowNull: false,
+      field: 'created_at'
     },
   },
   {
     underscored: true,
     sequelize: db,
-    modelName: "users",
+    modelName: "transactions",
     timestamps: false,
   }
 );

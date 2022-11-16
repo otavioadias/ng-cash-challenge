@@ -24,7 +24,7 @@ services:
       - DB_USER=postgres
       - DB_PASS=123456
       - DB_HOST=db
-      - DB_PORT=3002
+      - DB_PORT=5432
   db:
     image: postgres
     container_name: db_postgres

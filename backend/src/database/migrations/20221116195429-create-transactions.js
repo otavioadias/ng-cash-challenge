@@ -17,9 +17,7 @@ module.exports = {
           model: "accounts",
           key: "id",
         },
-        field: "account_id",
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
+        field: "debited_account_id",
       },
       creditedAccountId: {
         type: Sequelize.INTEGER,
@@ -28,9 +26,7 @@ module.exports = {
           model: "accounts",
           key: "id",
         },
-        field: "account_id",
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
+        field: "credited_account_id",
       },
       value: {
         type: Sequelize.INTEGER,
@@ -38,7 +34,7 @@ module.exports = {
       },
       createdAt: {
         type: Sequelize.DATE,
-        allowNull: false,
+        field: 'created_at',
       },
      });
   },

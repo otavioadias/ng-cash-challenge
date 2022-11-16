@@ -3,9 +3,7 @@ import db from ".";
 
 class Accounts extends Model {
   id!: number;
-  username!: string;
-  password!: string;
-  accountId!: number;
+  balance!: number;
 }
 
 Accounts.init(

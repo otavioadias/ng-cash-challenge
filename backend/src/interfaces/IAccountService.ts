@@ -1,5 +1,8 @@
-import IUserLogin from "./IUserLogin";
+export default interface IAccountervice {
+    visualizerAccount(token: string): Promise<IAccount> 
+}
 
-export default interface IUserService {
-    visualizerAccount(token: string): Promise<object | void>;
+export type IAccount = {
+    id: number,
+    balance: number
 }

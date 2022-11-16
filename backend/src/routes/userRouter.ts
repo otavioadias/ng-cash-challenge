@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express';
 import UserController from '../controllers/UserController';
+import loginMiddleware from '../middlewares/loginMiddleware';
 import UserService from '../services/UserService';
 
 const userService = new UserService();
@@ -9,6 +10,7 @@ const router = Router();
 router
   .post(
     '/registration',
+    loginMiddleware,
     (
         req: Request,
         res: Response,
@@ -18,6 +20,7 @@ router
   router
   .post(
     '/login',
+    loginMiddleware,
     (
         req: Request,
         res: Response,

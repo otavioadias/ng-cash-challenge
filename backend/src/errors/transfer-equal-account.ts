@@ -1,7 +1,7 @@
-export default class UserDontExists extends Error {
+export default class TransferUserError extends Error {
     public status: number;
     constructor(message: string) {
         super(message);
-        this.status = 404;
+        this.status = 401;
     }
 }

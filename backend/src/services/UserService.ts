@@ -33,16 +33,16 @@ export default class UserService implements IUserService {
             const accountId = await Accounts.create({
                 balance: 100
             });
-            const newUser = await Users.create({
+            await Users.create({
                 username: user.username,
                 password: passwordHashed,
                 accountId: accountId.id,
             });
+            console.log(accountId);
             const token = await UserService.generateTokenUser(user);
             return { token };
         }
         throw new UserExists('User already exist');
-        
     }
 
     static async decodePassword(password: string, passwordDB: string): Promise<boolean> {
