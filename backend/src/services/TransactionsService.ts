@@ -23,7 +23,6 @@ export default class TransactionsService implements ITransactionsService {
   ): Promise<void> {
     const userCashOut = await this.accountService.visualizerAccount(token);
     const [userCashIn] = await Users.findAll({ where: { username } });
-
     if(!userCashIn) {
       throw new InvalidParamError('Invalid username');
     }
