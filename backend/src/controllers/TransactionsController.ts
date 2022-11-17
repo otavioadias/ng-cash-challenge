@@ -7,7 +7,6 @@ export default class TransactionController {
     constructor(transactionService: ITransactionsService) {
         this.transactionService = transactionService;
     }
-
     async transaction(req: Request, res: Response): Promise<Response> {
         const token = req.headers.authorization;
         const { username, value } = req.body;
@@ -16,5 +15,32 @@ export default class TransactionController {
         }
         await this.transactionService.transaction(username, value, token as string);
         return res.status(201).json({ message: 'Successful transaction!' });
+    }
+
+    async viewTransaction(req: Request, res: Response): Promise<Response> {
+        const token = req.headers.authorization;
+        const transactions = await this.transactionService.viewTransaction(token as string);
+        return res.status(200).json(transactions);
+    }
+
+    public async dateTransaction(req: Request, res: Response): Promise<Response>  {
+        const token = req.headers.authorization;
+        const { date } = req.body;
+        const transactions = await this.transactionService.dateTransaction(token as string, date);
+        return res.status(200).json(transactions);
+    }
+
+    async debitedTransaction(req: Request, res: Response): Promise<Response> {
+        const token = req.headers.authorization;
+        const { date } = req.body;
+        const transactions = await this.transactionService.debitedTransaction(token as string, date);
+        return res.status(200).json(transactions);
+    }
+
+    async creditedTransaction(req: Request, res: Response): Promise<Response> {
+        const token = req.headers.authorization;
+        const { date } = req.body;
+        const transactions = await this.transactionService.creditedTransaction(token as string, date);
+        return res.status(200).json(transactions);
     }
 }

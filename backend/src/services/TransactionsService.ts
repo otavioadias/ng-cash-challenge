@@ -6,6 +6,7 @@ import Accounts from "../database/models/Accounts";
 import InvalidParamError from "../errors/invalid-param-error";
 import IAccountService, { IAccount } from '../interfaces/IAccountService';
 import { Op } from "sequelize";
+import { startOfDay, endOfDay, parseISO } from 'date-fns';
 
 
 export default class TransactionsService implements ITransactionsService {
@@ -34,7 +35,6 @@ export default class TransactionsService implements ITransactionsService {
         "Cash should be greather than value that you wants transfer"
       );
     }
-    console.log(new Date());
     await Transactions.create({
       debitedAccountId: userCashIn.accountId,
       creditedAccountId: userCashOut.id,
@@ -64,4 +64,58 @@ export default class TransactionsService implements ITransactionsService {
       }});
     return transaction;
   }
+
+  public async dateTransaction(token: string, date: string): Promise<object> {
+    const userId = await this.accountService.visualizerAccount(token);
+    const transaction = await Transactions.findAll({ where: {
+      [Op.or]: [
+        { debitedAccountId: userId.id },
+        { creditedAccountId: userId.id },
+      ],
+      [Op.and]: [
+        { created_at: { [Op.between]: [
+          startOfDay(parseISO(date)),
+          endOfDay(parseISO(date)),
+        ] } },
+      ],
+      }});
+    return transaction;
+  }
+
+  public async debitedTransaction(token: string, date: string | undefined): Promise<object> {
+    const userId = await this.accountService.visualizerAccount(token);
+    if(!date) {
+      const transaction = await Transactions.findAll({ where: { debitedAccountId: userId.id } });
+      return transaction;
+    }
+    const transactionDate = await Transactions.findAll({ where: { 
+      [Op.and]: [
+        { debitedAccountId: userId.id },
+        { created_at: { [Op.between]: [
+          startOfDay(parseISO(date)),
+          endOfDay(parseISO(date)),
+        ] } },
+      ],
+      }});
+    return transactionDate;
+  }
+
+  public async creditedTransaction(token: string, date: string | undefined): Promise<object> {
+    const userId = await this.accountService.visualizerAccount(token);
+    if(!date) {
+      const transaction = await Transactions.findAll({ where: { creditedAccountId: userId.id } });
+      return transaction;
+    }
+    const transactionDate = await Transactions.findAll({ where: { 
+      [Op.and]: [
+        { creditedAccountId: userId.id },
+        { created_at: { [Op.between]: [
+          startOfDay(parseISO(date)),
+          endOfDay(parseISO(date)),
+        ] } },
+      ],
+      }});
+    return transactionDate;
+  }
+  
 }

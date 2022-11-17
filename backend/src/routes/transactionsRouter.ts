@@ -9,6 +9,42 @@ const transactionController = new TransactionsController(transactionService);
 const router = Router();
 
 router
+.get(
+  '/transactions',
+  (
+      req: Request,
+      res: Response,
+  ) => transactionController.viewTransaction(req, res)
+);
+
+router
+.get(
+  '/transactions/date',
+  (
+      req: Request,
+      res: Response,
+  ) => transactionController.dateTransaction(req, res)
+);
+
+router
+.get(
+  '/transactions/credited',
+  (
+      req: Request,
+      res: Response,
+  ) => transactionController.creditedTransaction(req, res)
+);
+
+router
+.get(
+  '/transactions/debited',
+  (
+      req: Request,
+      res: Response,
+  ) => transactionController.debitedTransaction(req, res)
+);
+
+router
   .put(
     '/transactions',
     (
@@ -16,6 +52,7 @@ router
         res: Response,
     ) => transactionController.transaction(req, res)
   );
+
 
 
 export { router as transactionsRouter };

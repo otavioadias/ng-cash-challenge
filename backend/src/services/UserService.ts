@@ -38,7 +38,6 @@ export default class UserService implements IUserService {
                 password: passwordHashed,
                 accountId: accountId.id,
             });
-            console.log(accountId);
             const token = await UserService.generateTokenUser(user);
             return { token };
         }
