@@ -1,6 +1,6 @@
 import IUserService from "../interfaces/IUserService";
 import bcrypt = require('bcrypt');
-import IUserLogin, { IUser } from "../interfaces/IUserLogin";
+import IUserLogin, { IToken, IUser } from "../interfaces/IUserLogin";
 import Users from "../database/models/Users";
 import Accounts from "../database/models/Accounts";
 import generateToken from "../utils/JWT";
@@ -26,7 +26,7 @@ export default class UserService implements IUserService {
         return userExist;
     }
 
-    public async newUser(user: IUserLogin): Promise<object> {
+    public async newUser(user: IUserLogin): Promise<IToken> {
         const passwordHashed = UserService.hashPassword(user.password);
         const verifyUser = await UserService.findUser(user.username);
         if (!verifyUser) {
@@ -52,7 +52,7 @@ export default class UserService implements IUserService {
         return result;
     }
 
-    public async login(user: IUserLogin): Promise<object> {
+    public async login(user: IUserLogin): Promise<IToken> {
         if (!user.username || !user.password) {
             throw new MissingParamError('All fields must be filled');
           }

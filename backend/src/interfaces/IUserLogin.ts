@@ -3,6 +3,10 @@ type IUserLogin = {
     password: string,
   }
 
+export type IToken = {
+  token: string,
+}
+
 export type IUser = {
   id: number,
   username: string,
