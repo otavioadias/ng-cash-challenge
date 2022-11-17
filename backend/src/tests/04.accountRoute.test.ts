@@ -12,7 +12,7 @@ describe('Teste da rota /account', () => {
         const userAccount = {
             id: 1,
             balance: 100
-          }
+          };
         beforeEach(() => sinon.stub(AccountService.prototype, 'visualizerAccount').resolves(userAccount));
         afterEach(() => sinon.restore());
         it('Deve retornar o status 200 e o id e balance do usuário', async () => {
