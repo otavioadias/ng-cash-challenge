@@ -8,6 +8,7 @@ chai.use(chaiHttp);
 
 describe('Teste da rota /account', () => {
     describe('Faz a validação de usuário e retorna o id e balance', () => {
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpYXQiOjE2Njg2OTA1OTAsImV4cCI6MTY2ODc3Njk5MH0.c33uQvCiV_iKdRyzoD7LD1kB3tSNYkLZuhQXRs_W23k"
         const userAccount = {
             id: 1,
             balance: 100
