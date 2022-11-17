@@ -73,9 +73,9 @@ describe('Teste da rota /registration', () => {
             const httpResponse = await chai
             .request(app)
             .post('/registration')
-            .send({ username: 'user', password: 'user123'})
+            .send({ username: 'user', password: 'usertest123'})
             expect(httpResponse.status).to.equal(400);
-            expect(httpResponse.body).to.be.deep.equal({ message: "\"password\" length must be at least 8 characters long" });
+            expect(httpResponse.body).to.be.deep.equal({ message: "\"password\" with value \"usertest123\" fails to match the required pattern: /^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\\d]{8,}$/" });
         });
     });
 
@@ -87,7 +87,7 @@ describe('Teste da rota /registration', () => {
             const httpResponse = await chai
             .request(app)
             .post('/registration')
-            .send({ username: 'user', password: 'user1234'})
+            .send({ username: 'user', password: 'User1234'})
             expect(httpResponse.status).to.equal(201);
             expect(httpResponse.body).to.be.deep.equal({ token });
         });

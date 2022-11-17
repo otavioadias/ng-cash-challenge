@@ -65,7 +65,7 @@ describe('Teste da rota /login', () => {
         });
     });
 
-    describe('Quando os campos password é informado com menos de 8 caracteres', () => {
+    describe('Quando os campos password é informado com alguma regra errada "A senha deve conter ao menos 1 letra Maiuscula, 1 número, 1 letra minuscula e no mínimo 8 caracteres"', () => {
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpYXQiOjE2Njg2ODg5MjEsImV4cCI6MTY2ODc3NTMyMX0.cFmgVxuBhpA37WbVZ1U_tx6bphWQNrqM3-W2kN1mWqw"
         beforeEach(() => sinon.stub(UserService.prototype, 'newUser').resolves({ token }));
         afterEach(() => sinon.restore());
@@ -73,9 +73,9 @@ describe('Teste da rota /login', () => {
             const httpResponse = await chai
             .request(app)
             .post('/login')
-            .send({ username: 'user', password: 'user123'})
+            .send({ username: 'user', password: 'usertest123'})
             expect(httpResponse.status).to.equal(400);
-            expect(httpResponse.body).to.be.deep.equal({ message: "\"password\" length must be at least 8 characters long" });
+            expect(httpResponse.body).to.be.deep.equal({ message: "\"password\" with value \"usertest123\" fails to match the required pattern: /^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\\d]{8,}$/" });
         });
     });
     describe('Quando os campos username e password são informado', () => {
@@ -86,7 +86,7 @@ describe('Teste da rota /login', () => {
             const httpResponse = await chai
             .request(app)
             .post('/login')
-            .send({ username: 'userteste', password: 'user1234'})
+            .send({ username: 'userteste', password: 'User1234'})
             expect(httpResponse.status).to.equal(200);
             expect(httpResponse.body).to.be.deep.equal({ token });
         });
