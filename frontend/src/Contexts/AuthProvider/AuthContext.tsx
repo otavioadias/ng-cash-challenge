@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     async function getBalance(): Promise<IBalance | void> {
         const response = await requestData('account');
         if(response !== null) {
-            const payload = { token: response.token, id: response.id }
+            const payload = { token: response.token, id: response.id };
             setBalance(payload);
             setBalanceLocalStorage(payload);
         }
