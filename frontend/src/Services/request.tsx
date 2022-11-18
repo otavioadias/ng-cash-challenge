@@ -14,6 +14,11 @@ export const requestData = async (endpoint: string) => {
     return data;
 };
 
+export const requestFilter = async (endpoint: string, body: any) => {
+    const { data } = await api.get(endpoint, body);
+    return data;
+}
+
 type IToken = {
     token: string,
 }
