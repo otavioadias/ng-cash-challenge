@@ -10,6 +10,7 @@ const Register: React.FC = () => {
         try {
             await auth.registration(values.username, values.password);
             navigate("/home");
+            window.location.reload();
         } catch (err) {
             message.error('Incorrect format of username and password')
         }

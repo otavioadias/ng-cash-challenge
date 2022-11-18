@@ -27,6 +27,18 @@ export const requestRegistration = async (endpoint: string, body: any): Promise<
     return data;
 }
 
+export type ITransferUser = {
+    id: number,
+    debitedAccountId: number,
+    creditedAccountId: number,
+    value: number,
+    createdAt: string,
+}
+export const requestTransaction = async (endpoint: string, body: any): Promise<ITransferUser | null> => {
+    const { data } = await api.put(endpoint, body);
+    return data;
+}
+
 api.interceptors.request.use(
     (config: AxiosRequestConfig) => {
         const user = getUserLocalStorage();

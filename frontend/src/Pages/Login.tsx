@@ -9,6 +9,7 @@ const Login: React.FC = () => {
     async function onFinishLogin(values: {username: string, password: string}) {
             await auth.authenticate(values.username, values.password);
             navigate("/home");
+            window.location.reload();
     }
 
     return (
