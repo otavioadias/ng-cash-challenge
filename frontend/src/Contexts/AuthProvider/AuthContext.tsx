@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
             setBalance(payload);
             setBalanceLocalStorage(payload);
         }
+        return response;
     }
 
     function logout () {
