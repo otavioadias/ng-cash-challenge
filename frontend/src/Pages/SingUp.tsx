@@ -58,6 +58,9 @@ const Register: React.FC = () => {
                 </Form.Item>
             </Form>
         </Col>
+        <button type="button" onClick={() => navigate("/")}>
+              Login
+        </button>
      </Row>   
     );
 };

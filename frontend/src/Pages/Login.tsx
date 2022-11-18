@@ -24,7 +24,7 @@ const Login: React.FC = () => {
         <Col span={12}>
             <Form
               name='username'
-              labelCol={{span: 8 }}
+              labelCol={{ span: 8 }}
               wrapperCol={{span: 16 }}
               onFinish={onFinishLogin}
             >
@@ -56,7 +56,7 @@ const Login: React.FC = () => {
         </Col>
         <button
           type='button'
-          onClick={() => navigate("/registration")}
+          onClick={() => navigate("/register")}
         >
             Create new account
         </button>

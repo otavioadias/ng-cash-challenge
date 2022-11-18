@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Home: React.FC = () => {
     const auth = useAuth();
     const navigate = useNavigate();
+    const { balance, user } = auth;
 
     function logout() {
         auth.logout();
@@ -12,17 +13,17 @@ const Home: React.FC = () => {
     }
 
     return (
-        <>
+        <section>  
             <h1>Home</h1>
-            <>Welcome { auth.username } to NG_CASH { auth.getBalance }</>
-            <>Your balance { auth.getBalance() }</>
+            <h2>Welcome { user?.username } to NG_CASH</h2>
+            <h2>Your balance is { balance?.balance }</h2>
             <button
               type="button"
               onClick={logout}
             >
                 Logout
             </button>
-        </>
+        </section>
     );
 };
 

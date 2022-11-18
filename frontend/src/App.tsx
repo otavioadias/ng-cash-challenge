@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
           <Route path="/" element={<Login />} />
-          <Route path="/registration" element={<SingUp />} />
+          <Route path="/register" element={<SingUp />} />
         </Routes>
     </AuthProvider>
   );

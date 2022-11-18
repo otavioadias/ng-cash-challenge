@@ -1,17 +1,18 @@
 import { createContext, useEffect, useState } from 'react';
 import { requestData, requestLogin, requestRegistration } from '../../Services/request';
 import { IAuthProvider, IBalance, IContext, IUser } from './types';
-import { getUserLocalStorage, setBalanceLocalStorage, setUserLocalStorage } from './utils';
+import { getBalanceLocalStorage, getUserLocalStorage, setBalanceLocalStorage, setUserLocalStorage } from './utils';
 
 const AuthContext = createContext<IContext>({} as IContext);
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
     const [user, setUser] = useState<IUser | null>();
-    const [balance, setBalance] = useState<IBalance | null>();
+    const [balance, setBalance] = useState<IBalance>();
 
     useEffect(() => {
         const user = getUserLocalStorage();
-        const balance = getUserLocalStorage();
+        const balance = getBalanceLocalStorage();
+        getBalance();
         if(user) {
             setUser(user);
             setBalance(balance);
@@ -37,22 +38,22 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     }
 
     async function getBalance(): Promise<IBalance | void> {
-        const response = await requestData('account');
+        const response: IBalance = await requestData('account');
         if(response !== null) {
-            const payload = { token: response.token, id: response.id };
+            const payload = { id: response.id, balance: response.balance };
             setBalance(payload);
             setBalanceLocalStorage(payload);
         }
-        return response;
     }
 
     function logout () {
         setUser(null);
         setUserLocalStorage(null);
+        setBalanceLocalStorage(null);
     }
 
     return (
-        <AuthContext.Provider value={{ signed: true, ...user, ...balance, authenticate, registration, getBalance, logout }}>
+        <AuthContext.Provider value={{ signed: true, user, balance, authenticate, registration, getBalance, logout }}>
             { children }
         </AuthContext.Provider>
     )

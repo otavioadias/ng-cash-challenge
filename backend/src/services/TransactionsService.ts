@@ -35,8 +35,8 @@ export default class TransactionsService implements ITransactionsService {
       );
     }
     await Transactions.create({
-      debitedAccountId: userCashIn.accountId,
-      creditedAccountId: userCashOut.id,
+      debitedAccountId: userCashOut.id,
+      creditedAccountId: userCashIn.accountId,
       value,
       createdAt: new Date(),
     });
