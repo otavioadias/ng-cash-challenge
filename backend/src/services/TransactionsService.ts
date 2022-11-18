@@ -57,8 +57,8 @@ export default class TransactionsService implements ITransactionsService {
     const userId = await this.accountService.visualizerAccount(token);
     const transaction = await Transactions.findAll({ where: { 
       [Op.or]: [
-        {debitedAccountId: userId.id },
-        {creditedAccountId: userId.id },
+        { debitedAccountId: userId.id },
+        { creditedAccountId: userId.id },
       ],
       }});
     return transaction;
