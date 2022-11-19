@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAuth } from '../Contexts/AuthProvider/useAuth';
+import { useAuth } from '../../Contexts/AuthProvider/useAuth';
 import { useNavigate } from 'react-router-dom';
-import Transaction from '../Components/Transaction';
-import ViewTransactions from '../Components/ViewTransactions';
+import Transaction from '../../Components/Transaction';
+import ViewTransactions from '../../Components/ViewTransactions';
 
 const Home: React.FC = () => {
     const auth = useAuth();

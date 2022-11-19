@@ -1,6 +1,7 @@
 import React from 'react';
+import './index.css'
 import { Row, Col, Form, Input, Button, message } from 'antd';
-import { useAuth } from '../Contexts/AuthProvider/useAuth';
+import { useAuth } from '../../Contexts/AuthProvider/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 const Register: React.FC = () => {
@@ -17,17 +18,10 @@ const Register: React.FC = () => {
     }
 
     return (
-    <section className="register">
-        <Row
-        justify="center"
-        align="middle"
-        style={{ 
-            textAlign: 'center',
-            height: '100vh'
-        }}
-        className="registerForm"
-        >
-            <h1>Register</h1>
+    <section className="container">
+        <img src="https://ng.cash/_nuxt/img/logo-ngcash-branco.88c5860.svg" alt="Logo NG.CASH" className="logo is-hidden-touch"></img>
+        <Row>
+            <img src="https://cdn.discordapp.com/attachments/938669134890278937/1043593979079442522/20221119_145953_0000-removebg-preview.png" alt="Logo NG.CASH Login" className="logoLogin"></img>
             <Col span={12}>
                 <Form
                 name='username'
@@ -39,14 +33,14 @@ const Register: React.FC = () => {
                     label='Username'
                     name='username'
                     >
-                        <Input />
+                        <Input placeholder="Username"/>
                     </Form.Item>
 
                     <Form.Item
                     label='Password'
                     name='password'
                     >
-                        <Input.Password />
+                        <Input.Password placeholder="Password"/>
                     </Form.Item>
 
                     <Form.Item
@@ -62,7 +56,7 @@ const Register: React.FC = () => {
                 </Form>
             </Col>
             <button type="button" onClick={() => navigate("/")}>
-                Login
+                Back to Login
             </button>
         </Row>   
      </section>
