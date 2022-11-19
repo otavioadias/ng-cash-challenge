@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Form, Button, Table, Radio, RadioChangeEvent, DatePickerProps, Space, DatePicker } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { ITransferUser, requestFilter } from '../Services/request';
+import { ITransferUser, requestData } from '../Services/request';
 import type { ColumnsType } from 'antd/es/table';
 
 const ViewTransactions: React.FC = () => {
@@ -9,48 +9,41 @@ const ViewTransactions: React.FC = () => {
     const [transactions, setTransactions] = useState(Array<ITransferUser>);
     const [view, setView] = useState(false);
     const [filter, setFilter] = useState('All');
-    const [filterDate, setFilterDate] = useState('empty');
-    const [date, setDate] = useState(String);
+    const [date, setDate] = useState<string | undefined>();
 
     useEffect(() => {
       const apiAll = '/transactions';
-      getTransactionsFilter(apiAll, 'empty');
+      requestData(apiAll);
     }, [])
 
     useEffect(() => {
-      const apiDate = '/transactions/date';
       const apiAll = '/transactions';
       const apiCashOut = '/transactions/debited';
       const apiCashIn = '/transactions/credited';
-      switch (filter || filterDate) {
-      case 'Date':
-        getTransactionsFilter(apiDate, date);
-        break;
+      switch (filter) {
       case 'Cash-out':
-        getTransactionsFilter(apiCashOut, date);
+        getTransactionsFilter(apiCashOut,date);
         break;
       case 'Cash-in':
-          getTransactionsFilter(apiCashIn, date);
-          break;
+        getTransactionsFilter(apiCashIn,date);
+        break;
       default:
-        getTransactionsFilter(apiAll, 'empty');
+        getTransactionsFilter(apiAll, date)
         break;
       }
-    }, [filter, date, filterDate]);
+    }, [filter, date]);
 
-    async function getTransactionsFilter(endpoint: string, date: string) {
-      if (date === 'empty') {
-        const transactions = await requestFilter(endpoint, null);
+    async function getTransactionsFilter(endpoint: string, date: string | undefined) {
+      if (date !== undefined) {
+        console.log(date);
+        const transactions = await requestData(`${endpoint}?date=${date}`);
         return setTransactions(transactions);
       }
-      console.log(date);
-      const transactions = await requestFilter(endpoint, date as string);
+      const transactions = await requestData(endpoint);
       setTransactions(transactions);
     }
+
     async function viewTransaction() {
-        if(view === true) {
-          setView(false);
-        }
         setView(true);
         navigate("/home");
     }
@@ -88,12 +81,11 @@ const ViewTransactions: React.FC = () => {
 
     const onChange = ({ target: { value } }: RadioChangeEvent) => {
       setFilter(value);
-      setFilterDate('empty');
+      setDate(undefined);
     };
 
     const onChangeDate: DatePickerProps['onChange'] = (date, dateString) => {
       setDate(dateString);
-      setFilterDate('Date');
       console.log(date, dateString);
     };
 
@@ -106,7 +98,7 @@ const ViewTransactions: React.FC = () => {
             textAlign: "center",
           }}
         >
-          <h1>Transaction</h1>
+          <h1>Transactions</h1>
           <Col span={12}>
             <Form
               name="transaction"
@@ -116,26 +108,29 @@ const ViewTransactions: React.FC = () => {
             >
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  View|Hide All Transactions
+                  View Transactions
                 </Button>
-                {<h3>Filters of transactions</h3>}
-                <Radio.Group options={options} onChange={onChange} value={filter} optionType="button"/>
-                <Space direction="horizontal">
-                  <DatePicker name="date" onChange={onChangeDate} />
-                </Space>
-                < br/>
-                < br/>
-                < br/>
+                <section className="filters">
+                  <h3>Filters</h3>
+                  <Radio.Group options={options} onChange={onChange} value={filter} optionType="button"/>
+                  <Space direction="vertical">
+                    <DatePicker name="date" onChange={onChangeDate} />
+                  </Space>
+                </section>
               </Form.Item>
             </Form>
           </Col>
-          {view === true && (
-            <Table<ITransferUser>
-              dataSource={transactions}
-              columns={columns}
-              rowKey={() => Math.random()}
-            />
-          )}
+          <section className="tableTransactions">
+            {view === true ? (
+              <Table<ITransferUser>
+                dataSource={transactions}
+                columns={columns}
+                rowKey={() => Math.random()}
+              />
+            ) : (
+              <></>
+            )}
+          </section>
         </Row>
       </section>
     );

@@ -19,27 +19,21 @@ export default class TransactionController {
 
     async viewTransaction(req: Request, res: Response): Promise<Response> {
         const token = req.headers.authorization;
-        const transactions = await this.transactionService.viewTransaction(token as string);
-        return res.status(200).json(transactions);
-    }
-
-    public async dateTransaction(req: Request, res: Response): Promise<Response>  {
-        const token = req.headers.authorization;
-        const { date } = req.body;
-        const transactions = await this.transactionService.dateTransaction(token as string, date);
+        const { date } = req.query;
+        const transactions = await this.transactionService.viewTransaction(token as string, date);
         return res.status(200).json(transactions);
     }
 
     async debitedTransaction(req: Request, res: Response): Promise<Response> {
         const token = req.headers.authorization;
-        const { date } = req.body;
+        const { date } = req.query;
         const transactions = await this.transactionService.debitedTransaction(token as string, date);
         return res.status(200).json(transactions);
     }
 
     async creditedTransaction(req: Request, res: Response): Promise<Response> {
         const token = req.headers.authorization;
-        const { date } = req.body;
+        const { date } = req.query;
         const transactions = await this.transactionService.creditedTransaction(token as string, date);
         return res.status(200).json(transactions);
     }

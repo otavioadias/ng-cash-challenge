@@ -53,33 +53,27 @@ export default class TransactionsService implements ITransactionsService {
     );
   }
 
-  public async viewTransaction(token: string): Promise<Transactions[]> {
+  public async viewTransaction(token: string, date: string | undefined): Promise<Transactions[]> {
     const userId = await this.accountService.visualizerAccount(token);
-    const transaction = await Transactions.findAll({ where: { 
-      [Op.or]: [
-        { debitedAccountId: userId.id },
-        { creditedAccountId: userId.id },
-      ],
+    if(!date) {
+      const transaction = await Transactions.findAll({ where: { 
+        [Op.or]: [
+          { debitedAccountId: userId.id },
+          { creditedAccountId: userId.id },
+        ],
+        }});
+      return transaction;
+    }
+    const transactionDate = await Transactions.findAll({ where: { 
+        created_at: { [Op.between]: [
+          startOfDay(parseISO(date as string)),
+          endOfDay(parseISO(date as string)),
+        ] },
       }});
-    return transaction;
+    return transactionDate;
   }
 
-  public async dateTransaction(token: string, date: string): Promise<Transactions[]> {
-    const userId = await this.accountService.visualizerAccount(token);
-    const transaction = await Transactions.findAll({ where: {
-      [Op.or]: [
-        { debitedAccountId: userId.id },
-        { creditedAccountId: userId.id },
-      ],
-      [Op.and]: [
-        { created_at: { [Op.between]: [
-          startOfDay(parseISO(date)),
-          endOfDay(parseISO(date)),
-        ] } },
-      ],
-      }});
-    return transaction;
-  }
+ 
 
   public async debitedTransaction(token: string, date: string | undefined): Promise<Transactions[]> {
     const userId = await this.accountService.visualizerAccount(token);

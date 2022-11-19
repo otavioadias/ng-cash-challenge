@@ -17,41 +17,42 @@ const Transaction: React.FC = () => {
     }
 
     return (
-      <Row
-        justify="center"
-        align="middle"
-        style={{
-          textAlign: "center",
-        }}
-      >
-        <h1>Transaction</h1>
-        <Col span={12}>
-          <Form
-            name="transaction"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            onFinish={onFinishTransaction}
-          >
-            <Form.Item label="Username" name="username">
-              <Input />
-            </Form.Item>
+      <section className="transaction">
+        <Row
+          justify="center"
+          align="middle"
+          style={{
+            textAlign: "center",
+          }}
+        >
+          <h1>Transaction</h1>
+          <Col span={12}>
+            <Form
+              name="transaction"
+              labelCol={{ span: 8 }}
+              wrapperCol={{ span: 16 }}
+              onFinish={onFinishTransaction}
+            >
+              <Form.Item label="Username" name="username">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Value" name="value">
+                <InputNumber
+                  formatter={(value) =>
+                    `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                />
+              </Form.Item>
 
-            <Form.Item label="Value" name="value">
-              <InputNumber
-                formatter={(value) =>
-                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-              />
-            </Form.Item>
-
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit">
-                Transaction
-              </Button>
-            </Form.Item>
-          </Form>
-        </Col>
-      </Row>
+              <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <Button type="primary" htmlType="submit">
+                  Transaction
+                </Button>
+              </Form.Item>
+            </Form>
+          </Col>
+        </Row>
+      </section>
     );
 };
 

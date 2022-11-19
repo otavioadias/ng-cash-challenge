@@ -19,15 +19,6 @@ router
 
 router
 .get(
-  '/transactions/date',
-  (
-      req: Request,
-      res: Response,
-  ) => transactionController.dateTransaction(req, res)
-);
-
-router
-.get(
   '/transactions/credited',
   (
       req: Request,

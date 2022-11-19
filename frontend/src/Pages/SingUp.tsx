@@ -17,52 +17,55 @@ const Register: React.FC = () => {
     }
 
     return (
-     <Row
-     justify="center"
-     align="middle"
-     style={{ 
-        textAlign: 'center',
-        height: '100vh'
-    }}
-     >
-        <h1>Register</h1>
-        <Col span={12}>
-            <Form
-              name='username'
-              labelCol={{span: 8 }}
-              wrapperCol={{span: 16 }}
-              onFinish={onFinishRegistration}
-            >
-                <Form.Item
-                  label='Username'
-                  name='username'
+    <section className="register">
+        <Row
+        justify="center"
+        align="middle"
+        style={{ 
+            textAlign: 'center',
+            height: '100vh'
+        }}
+        className="registerForm"
+        >
+            <h1>Register</h1>
+            <Col span={12}>
+                <Form
+                name='username'
+                labelCol={{span: 8 }}
+                wrapperCol={{span: 16 }}
+                onFinish={onFinishRegistration}
                 >
-                    <Input />
-                </Form.Item>
-
-                <Form.Item
-                  label='Password'
-                  name='password'
-                >
-                    <Input.Password />
-                </Form.Item>
-
-                <Form.Item
-                  wrapperCol={{offset: 8, span: 16 }}
-                >
-                    <Button
-                      type='primary'
-                      htmlType='submit'
+                    <Form.Item
+                    label='Username'
+                    name='username'
                     >
-                        Register
-                    </Button>
-                </Form.Item>
-            </Form>
-        </Col>
-        <button type="button" onClick={() => navigate("/")}>
-              Login
-        </button>
-     </Row>   
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                    label='Password'
+                    name='password'
+                    >
+                        <Input.Password />
+                    </Form.Item>
+
+                    <Form.Item
+                    wrapperCol={{offset: 8, span: 16 }}
+                    >
+                        <Button
+                        type='primary'
+                        htmlType='submit'
+                        >
+                            Register
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Col>
+            <button type="button" onClick={() => navigate("/")}>
+                Login
+            </button>
+        </Row>   
+     </section>
     );
 };
 

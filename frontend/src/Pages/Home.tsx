@@ -15,22 +15,22 @@ const Home: React.FC = () => {
     }
 
     return (
-        <section>  
-            <header>
+        <section className="homeView">  
+            <header className="headerView">
                 <h1>Home</h1>
-                <h2>Welcome { user?.username } to NG_CASH</h2>
-                <h2>Your balance is { balance?.balance }</h2>
                 <button
                 type="button"
                 onClick={logout}
                 >
                     Logout
-                </button>
+                </button>   
             </header>
-            <br />
-            <section>
+            <section className="userView">
+                <h2>Welcome { user?.username } to NG_CASH</h2>
+                <h2>Your balance is $: { balance?.balance },00</h2>
+            </section>
+            <section className="transactionsView">
                 <Transaction />
-                <br />
                 <ViewTransactions />
             </section>
         </section>
