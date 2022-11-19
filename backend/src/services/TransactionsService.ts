@@ -29,7 +29,7 @@ export default class TransactionsService implements ITransactionsService {
     if (userCashOut.id === userCashIn.accountId) {
       throw new InvalidParamError("You dont transfer for yourself");
     }
-    if (userCashOut.balance < value) {
+    if (userCashOut.balance < value || value < 0) {
       throw new CashInsuficient(
         "Cash should be greather than value that you wants transfer"
       );

@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css'
+import './index.css';
 import { Row, Col, Form, Input, Button, message } from 'antd';
 import { useAuth } from '../../Contexts/AuthProvider/useAuth';
 import { useNavigate } from 'react-router-dom';

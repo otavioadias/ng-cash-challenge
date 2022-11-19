@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './CSS/ViewTransaction.css'
 import { Row, Col, Form, Button, Table, Radio, RadioChangeEvent, DatePickerProps, Space, DatePicker } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { ITransferUser, requestData } from '../Services/request';
@@ -44,6 +45,9 @@ const ViewTransactions: React.FC = () => {
     }
 
     async function viewTransaction() {
+      if(view === true) {
+        return setView(false);
+      }
         setView(true);
         navigate("/home");
     }
@@ -90,7 +94,7 @@ const ViewTransactions: React.FC = () => {
     };
 
     return (
-      <section>
+      <section className="view">
         <Row
           justify="center"
           align="middle"
@@ -98,7 +102,6 @@ const ViewTransactions: React.FC = () => {
             textAlign: "center",
           }}
         >
-          <h1>Transactions</h1>
           <Col span={12}>
             <Form
               name="transaction"
@@ -111,10 +114,9 @@ const ViewTransactions: React.FC = () => {
                   View Transactions
                 </Button>
                 <section className="filters">
-                  <h3>Filters</h3>
                   <Radio.Group options={options} onChange={onChange} value={filter} optionType="button"/>
                   <Space direction="vertical">
-                    <DatePicker name="date" onChange={onChangeDate} />
+                    <DatePicker placeholder="Input data: YYYY-MM-DD and press enter"name="date" onChange={onChangeDate} />
                   </Space>
                 </section>
               </Form.Item>

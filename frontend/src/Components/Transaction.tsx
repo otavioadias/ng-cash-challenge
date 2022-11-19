@@ -1,4 +1,5 @@
 import React from 'react';
+import './CSS/Transaction.css'
 import { Row, Col, Form, Input, Button, message, InputNumber } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { requestTransaction } from '../Services/request';
@@ -25,7 +26,7 @@ const Transaction: React.FC = () => {
             textAlign: "center",
           }}
         >
-          <h1>Transaction</h1>
+          <h1>Make a new Transaction</h1>
           <Col span={12}>
             <Form
               name="transaction"
@@ -34,7 +35,7 @@ const Transaction: React.FC = () => {
               onFinish={onFinishTransaction}
             >
               <Form.Item label="Username" name="username">
-                <Input />
+                <Input placeholder="Username"/>
               </Form.Item>
               <Form.Item label="Value" name="value">
                 <InputNumber

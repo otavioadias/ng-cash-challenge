@@ -17,61 +17,58 @@
     width: 350px;
 }
   
-  .ant-row {
-    align-items: center;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    height: 40%;
-    justify-content: center;
-    padding: 10px 30px;
-  }
+.ant-row {
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 40%;
+  justify-content: center;
+  padding: 10px 30px;
+}
 
-  #username {
-    padding: 10px;
-    font-size: 1.2em;
-  }
+#username {
+  padding: 10px;
+  font-size: 1.2em;
+}
 
-  #username div {
-    background-color: rgba(128, 128, 128, 0);
+#username div {
+  background-color: rgba(128, 128, 128, 0);
+}
 
-  }
+#username input {
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  font-size: 1em;
+  width: 300px;
+  height: 20px;
+  padding: 5px;
+  padding-left: 10px;;
+}
 
-  #username input {
-    border: none;
-    border-radius: 5px;
-    display: flex;
-    font-size: 1em;
-    width: 300px;
-    height: 20px;
-    padding: 5px;
-    padding-left: 10px;;
-  }
+#username button {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  font-size: 0.9em;
+  width: 90px;
+}
 
-  #username button {
-    background-color: rgba(0, 0, 0, 0);
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    padding: 5px;
-    font-size: 0.9em;
-    width: 90px;
-  }
+#username button:hover, .container button:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.071);
+}
 
-  #username button:hover, .container button:hover {
-    cursor: pointer;
-    background-color: rgba(160, 160, 160, 0.053);
-
-  }
-
-  .container button {
-    background-color: rgba(0, 0, 0, 0);
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white; 
-    padding: 5px;
-    font-size: 1em;
-    width: 150px;
-  }
-  
+.container button {
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white; 
+  padding: 5px;
+  font-size: 1em;
+  width: 150px;
+}
