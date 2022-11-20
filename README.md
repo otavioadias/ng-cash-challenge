@@ -236,7 +236,11 @@ O Back-end é composto de 4 seções principais:
 - Se foi realizado com sucesso, o resultado deverá ser uma mensagem de sucesso com um status http `201`:
   ```json
   {
-    "message": "Successful transaction!"
+    "id": 2,
+    "debitedAccountId": 2,
+    "creditedAccountId": 1,
+    "value": 7,
+    "createdAt": "2022-11-20T21:26:13.589Z"
   }
   ```
 - Se o valor for negativo ou o balance insuficiente, o resultado deverá ser uma mensagem de erro com um status http `401`:
