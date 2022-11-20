@@ -270,84 +270,84 @@ O Back-end é composto de 4 seções principais:
 
 - Se o usuário possuir transações, o resultado deverá ser uma `Array<{}>` com um status http `200`:
   ```json
- [
-  {
-    "id": 1,
-    "debitedAccountId": 3,
-    "creditedAccountId": 1,
-    "value": 3,
-    "createdAt": "2022-11-20T00:53:25.337Z"
-  },
-  {
-    "id": 2,
-    "debitedAccountId": 3,
-    "creditedAccountId": 1,
-    "value": 3,
-    "createdAt": "2022-11-20T00:53:25.503Z"
-  },
-  {
-    "id": 3,
-    "debitedAccountId": 3,
-    "creditedAccountId": 1,
-    "value": 3,
-    "createdAt": "2022-11-20T00:53:25.668Z"
-  },
-  {
-    "id": 4,
-    "debitedAccountId": 3,
-    "creditedAccountId": 1,
-    "value": 3,
-    "createdAt": "2022-11-20T00:53:25.847Z"
-  },
-  {
-    "id": 5,
-    "debitedAccountId": 3,
-    "creditedAccountId": 1,
-    "value": 3,
-    "createdAt": "2022-11-20T00:53:26.020Z"
-  },
-  {
-    "id": 6,
-    "debitedAccountId": 3,
-    "creditedAccountId": 1,
-    "value": 3,
-    "createdAt": "2022-11-20T00:53:26.201Z"
-  },
-  {
-    "id": 7,
-    "debitedAccountId": 3,
-    "creditedAccountId": 1,
-    "value": 3,
-    "createdAt": "2022-11-20T00:53:26.370Z"
-  },
-  {
-    "id": 8,
-    "debitedAccountId": 3,
-    "creditedAccountId": 1,
-    "value": 3,
-    "createdAt": "2022-11-20T00:53:26.559Z"
-  },
-  {
-    "id": 9,
-    "debitedAccountId": 3,
-    "creditedAccountId": 1,
-    "value": 3,
-    "createdAt": "2022-11-20T00:53:26.739Z"
-  }
-]
+  [
+    {
+      "id": 1,
+      "debitedAccountId": 3,
+      "creditedAccountId": 1,
+      "value": 3,
+      "createdAt": "2022-11-20T00:53:25.337Z"
+    },
+    {
+      "id": 2,
+      "debitedAccountId": 3,
+      "creditedAccountId": 1,
+      "value": 3,
+      "createdAt": "2022-11-20T00:53:25.503Z"
+    },
+    {
+      "id": 3,
+      "debitedAccountId": 3,
+      "creditedAccountId": 1,
+      "value": 3,
+      "createdAt": "2022-11-20T00:53:25.668Z"
+    },
+    {
+      "id": 4,
+      "debitedAccountId": 3,
+      "creditedAccountId": 1,
+      "value": 3,
+      "createdAt": "2022-11-20T00:53:25.847Z"
+    },
+    {
+      "id": 5,
+      "debitedAccountId": 3,
+      "creditedAccountId": 1,
+      "value": 3,
+      "createdAt": "2022-11-20T00:53:26.020Z"
+    },
+    {
+      "id": 6,
+      "debitedAccountId": 3,
+      "creditedAccountId": 1,
+      "value": 3,
+      "createdAt": "2022-11-20T00:53:26.201Z"
+    },
+    {
+      "id": 7,
+      "debitedAccountId": 3,
+      "creditedAccountId": 1,
+      "value": 3,
+      "createdAt": "2022-11-20T00:53:26.370Z"
+    },
+    {
+      "id": 8,
+      "debitedAccountId": 3,
+      "creditedAccountId": 1,
+      "value": 3,
+      "createdAt": "2022-11-20T00:53:26.559Z"
+    },
+    {
+      "id": 9,
+      "debitedAccountId": 3,
+      "creditedAccountId": 1,
+      "value": 3,
+      "createdAt": "2022-11-20T00:53:26.739Z"
+    }
+  ]
   ```
 - Se o valor for negativo ou o balance insuficiente, o resultado deverá ser uma mensagem de erro com um status http `401`:
   ```json
-  {
-    "message": "Cash should be greather than value that you wants transfer"
-  }
+    {
+      "message": "Cash should be greather than value that you wants transfer"
+    }
   ```
 
 - Se a pessoa tentar transferir para si mesma, o resultado deverá ser uma mensagem de erro com um status http `401`:
   ```json
-  {
-    "message": "You dont transfer for yourself"
-  }
+    {
+      "message": "You dont transfer for yourself"
+    }
   ```
 
 ## Front-end
