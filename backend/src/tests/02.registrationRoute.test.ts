@@ -51,7 +51,7 @@ describe('Teste da rota /registration', () => {
         });
     });
 
-    describe('Quando os campos username é informado com menos de 3 caracteres', () => {
+    describe('Quando o campo username é informado com menos de 3 caracteres', () => {
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpYXQiOjE2Njg2ODg5MjEsImV4cCI6MTY2ODc3NTMyMX0.cFmgVxuBhpA37WbVZ1U_tx6bphWQNrqM3-W2kN1mWqw"
         beforeEach(() => sinon.stub(UserService.prototype, 'newUser').resolves({ token }));
         afterEach(() => sinon.restore());
@@ -59,13 +59,13 @@ describe('Teste da rota /registration', () => {
             const httpResponse = await chai
             .request(app)
             .post('/registration')
-            .send({ username: 'us', password: 'user1234'})
+            .send({ username: 'us', password: 'User1234'})
             expect(httpResponse.status).to.equal(400);
             expect(httpResponse.body).to.be.deep.equal({ message: "\"username\" length must be at least 3 characters long" });
         });
     });
 
-    describe('Quando os campos password é informado com menos de 8 caracteres', () => {
+    describe('Quando o campo password é informado com menos de 8 caracteres', () => {
         const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpYXQiOjE2Njg2ODg5MjEsImV4cCI6MTY2ODc3NTMyMX0.cFmgVxuBhpA37WbVZ1U_tx6bphWQNrqM3-W2kN1mWqw"
         beforeEach(() => sinon.stub(UserService.prototype, 'newUser').resolves({ token }));
         afterEach(() => sinon.restore());
@@ -73,7 +73,7 @@ describe('Teste da rota /registration', () => {
             const httpResponse = await chai
             .request(app)
             .post('/registration')
-            .send({ username: 'user', password: 'usertest123'})
+            .send({ username: 'user', password: 'ust123'})
             expect(httpResponse.status).to.equal(400);
             expect(httpResponse.body).to.be.deep.equal({ message: "\"password\" with value \"usertest123\" fails to match the required pattern: /^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\\d]{8,}$/" });
         });
