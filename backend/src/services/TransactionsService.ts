@@ -20,7 +20,7 @@ export default class TransactionsService implements ITransactionsService {
     username: string,
     value: number,
     token: string
-  ): Promise<void> {
+  ): Promise<Transactions[]> {
     const userCashOut = await this.accountService.visualizerAccount(token);
     const [userCashIn] = await Users.findAll({ where: { username } });
     if(!userCashIn) {
@@ -34,7 +34,7 @@ export default class TransactionsService implements ITransactionsService {
         "Cash should be greather than value that you wants transfer"
       );
     }
-    await Transactions.create({
+    const transaction = await Transactions.create({
       debitedAccountId: userCashOut.id,
       creditedAccountId: userCashIn.accountId,
       value,
@@ -51,6 +51,8 @@ export default class TransactionsService implements ITransactionsService {
       { balance: accountUser.balance + value },
       { where: { id: userCashIn.id } }
     );
+
+    return transaction as unknown as Transactions[];
   }
 
   public async viewTransaction(token: string, date: string | undefined): Promise<Transactions[]> {

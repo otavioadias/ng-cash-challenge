@@ -73,9 +73,9 @@ describe('Teste da rota /registration', () => {
             const httpResponse = await chai
             .request(app)
             .post('/registration')
-            .send({ username: 'user', password: 'ust123'})
+            .send({ username: 'user', password: 'Ust123'})
             expect(httpResponse.status).to.equal(400);
-            expect(httpResponse.body).to.be.deep.equal({ message: "\"password\" with value \"usertest123\" fails to match the required pattern: /^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\\d]{8,}$/" });
+            expect(httpResponse.body).to.be.deep.equal({ message: "\"password\" with value \"Ust123\" fails to match the required pattern: /^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\\d]{8,}$/" });
         });
     });
 

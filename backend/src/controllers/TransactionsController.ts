@@ -13,8 +13,8 @@ export default class TransactionController {
         if(!username || !value) {
             return res.status(400).json({ message: 'Username or value cannot be empty' });
         }
-        await this.transactionService.transaction(username, value, token as string);
-        return res.status(201).json({ message: 'Successful transaction!' });
+        const transaction = await this.transactionService.transaction(username, value, token as string);
+        return res.status(201).json(transaction);
     }
 
     async viewTransaction(req: Request, res: Response): Promise<Response> {
