@@ -84,6 +84,9 @@ Atenção, pois aqui você encontrará informações importantes para inicializa
   - Nas pastas de `frontend/` e `backend/` existe um arquivo `Dockerfile` em cada, configurados corretamente para a aplicação começar a rodar.
 
 ⚠️ **Atenção:**
+- Retirar o .example do arquivo **.env**
+
+⚠️ **Como rodar a aplicação:**
 
 - No projeto contém um arquivo `docker-compose.yml` e `docker-compose.dev.yml`;
 - O arquivo `docker-compose.yml` pode ser utilizado para executar a aplicação na sua máquina local, para isso é necessário executar o comando na raiz do projeto:
