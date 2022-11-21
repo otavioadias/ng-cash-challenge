@@ -67,10 +67,16 @@ export default class TransactionsService implements ITransactionsService {
       return transaction;
     }
     const transactionDate = await Transactions.findAll({ where: { 
-        created_at: { [Op.between]: [
-          startOfDay(parseISO(date as string)),
-          endOfDay(parseISO(date as string)),
-        ] },
+      [Op.or]: [
+        { debitedAccountId: userId.id },
+        { creditedAccountId: userId.id },
+      ],
+      [Op.and]: [
+        { created_at: { [Op.between]: [
+          startOfDay(parseISO(date)),
+          endOfDay(parseISO(date)),
+        ] } },
+      ],
       }});
     return transactionDate;
   }
