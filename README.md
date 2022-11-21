@@ -1,6 +1,7 @@
 # Boas vindas ao repositório do NG.CASH | TECH CHALLENGE!
 
 Aplicação FullStack que possibilita os usuários da NG realizar transferências internas entre si. 🚀
+Desenvolvida por: Otávio Azevedo Dias
 
 #
 
