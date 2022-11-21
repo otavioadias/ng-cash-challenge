@@ -88,6 +88,11 @@ Atenção, pois aqui você encontrará informações importantes para inicializa
 
 ⚠️ **Como rodar a aplicação:**
 
+- Baixe a aplicação
+- Extraia a aplicação
+- Abri o terminal e o VSCode
+- Entre nas pastas de /frontend e /backend e instale as dependências:
+  - `npm install`
 - No projeto contém um arquivo `docker-compose.yml` e `docker-compose.dev.yml`;
 - O arquivo `docker-compose.yml` pode ser utilizado para executar a aplicação na sua máquina local, para isso é necessário executar o comando na raiz do projeto:
   - `npm run compose:up` 
