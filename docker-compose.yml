@@ -6,7 +6,7 @@ services:
     ports:
       - 3000:3000
     platform: linux/x86_64
-    working_dir: /app-frontend
+    working_dir: /frontend
     depends_on: 
       - backend
   backend:
@@ -15,7 +15,7 @@ services:
     ports:
       - 3001:3001
     platform: linux/x86_64
-    working_dir: /app-backend
+    working_dir: /backend
     depends_on: 
       - db
     environment:

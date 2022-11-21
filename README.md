@@ -17,9 +17,6 @@ Aplicação FullStack que possibilita os usuários da NG realizar transferência
 
   O _token_ é gerado através do **LOGIN ou do REGISTER**, caso não tenha uma conta é possível se cadastrar.
 
-</details>
-
-<details>
 <summary><strong>Estrutura do projeto</strong></summary><br />
 
 O projeto é composto de 4 entidades importantes para sua estrutura:
@@ -33,7 +30,8 @@ O projeto é composto de 4 entidades importantes para sua estrutura:
     - PASSWORD=123456
     - HOST=127.0.0.1 
     - PORT=3002
-  ![Exemplo acesso banco de dados](backend/assets/database_config.png)
+  - Caso queira conectar o banco após subir a aplicação segue uma foto de exemplo:
+     ![Exemplo acesso banco de dados](backend/assets/dabatabe_config.png)
 
 2️⃣ **Back-end:**
  - Stacks utilizadas:
@@ -57,8 +55,6 @@ O projeto é composto de 4 entidades importantes para sua estrutura:
   - Para subir o projeto completo utilize com o comando `npm run compose:up` ou `npm run compose:up:dev`;
   - Os arquivos de `Dockerfiles` para inicializar a aplicação estão nas raízes do `frontend` e `backend`.
 
-</details>
-
 #
 
 # Orientações para executar o projeto
@@ -66,7 +62,7 @@ O projeto é composto de 4 entidades importantes para sua estrutura:
 ## Como inicializar o projeto
 Atenção, pois aqui você encontrará informações importantes para inicializar corretamente o projeto.
 
-<summary><strong> Iniciando o projeto</strong></summary><br />
+<summary><strong>Baixando o projeto do Github</strong></summary><br />
 
   1. Clone o repositório utilizando do `SSH`
    * `git clone git@github.com:otavioadias/ng-cash-challenge.git`
@@ -77,7 +73,7 @@ Atenção, pois aqui você encontrará informações importantes para inicializa
   2. Instale as dependências:
    * `npm install`
 
-<summary><strong>🐳 Informações sobre Docker</strong></summary><br />
+<strong>🐳 Informações sobre Docker e como rodar</strong><br />
 
   ### Docker e Docker-compose
 
@@ -90,8 +86,14 @@ Atenção, pois aqui você encontrará informações importantes para inicializa
 ⚠️ **Atenção:**
 
 - No projeto contém um arquivo `docker-compose.yml` e `docker-compose.dev.yml`;
-- O arquivo `docker-compose.yml` pode ser utilizado para executar a aplicação na sua máquina local, para isso é necessário executar o comando `npm run compose:up` ou para o modo de desenvolvimento `npm run compose:up:dev`na raiz do projeto.
-- Para deburrar a aplicação é necessário executar o comando `npm run compose:down` ou para o modo de desenvolvimento `npm run compose:down:dev`na raiz do projeto.
+- O arquivo `docker-compose.yml` pode ser utilizado para executar a aplicação na sua máquina local, para isso é necessário executar o comando na raiz do projeto:
+  - `npm run compose:up` 
+- Ou para o modo de desenvolvimento:
+  - `npm run compose:up:dev`
+- Para deburrar a aplicação é necessário executar o comando
+  - `npm run compose:down` 
+- Para o modo de desenvolvimento:
+  - `npm run compose:down:dev`
 
 #
 
@@ -127,12 +129,13 @@ Aqui você encontrará informações e sobre o desenvolvimento do projeto.
 </details>
 
 <details id='testes-de-cobertura'>
-  <summary><strong> Testes de cobertura </strong></summary><br/>
+  <summary><strong> Testes </strong></summary><br/>
 
-  A construção de testes de cobertura no back-end foi realizada em *TypeScript*, utilizando `mocha`, `chai` e `sinon`, na pasta `backend/src/tests/`.
+  A construção de testes no back-end foi realizada em *TypeScript*, utilizando `mocha`, `chai` e `sinon`, na pasta `backend/src/tests/`.
 
-  Para rodar testes de cobertura no seu back-end, utilize o comando: `npm test`.
-  Atenção: É necessário utilizar o terminal dentro do backend para rodar os testes.
+  - Para rodar testes de cobertura no seu back-end, utilize o comando: 
+    - `npm test`
+  - Atenção: É necessário utilizar o terminal dentro do backend para rodar os testes.
 </details>
 
 #
